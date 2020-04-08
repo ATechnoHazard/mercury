@@ -28,10 +28,10 @@ class Home extends Component {
 
         <br></br>
 
-        <Container>
+        <Container fluid style={{textAlign: "center"}}>
           <Row>
             <Col lg={true} className="my-auto">
-              <Card className="border-0">
+              <Card className="border-0" style={{textAlign: "left"}}>
                 <Card.Body>
                   <Card.Title>What are swaps?</Card.Title>
                   <Card.Text>
@@ -51,7 +51,7 @@ class Home extends Component {
             </Col>
           </Row>
 
-          <Row style={{ marginTop: "100px", backgroundColor: "#f1f3f6" }}>
+          <Row style={{ marginTop: "100px", backgroundColor: "#f1f3f6", padding: "40px" }}>
             <Col lg={true}>
               <img
                 src="https://matic.network/_nuxt/c29fd82f84b3eb89fd5748d22eaa05cc.svg"
@@ -60,9 +60,9 @@ class Home extends Component {
             </Col>
 
             <Col lg={true} className="my-auto">
-              <Card className="border-0" style={{ backgroundColor: "#f1f3f6" }}>
+              <Card className="border-0" style={{ backgroundColor: "#f1f3f6",textAlign: "left" }}>
                 <Card.Body>
-                  <Card.Title>How swaps work</Card.Title>
+                  <Card.Title><h4 style={{fontWeight: "bold"}}>How swaps work</h4></Card.Title>
                   <Card.Text>
                     Swaps on our DEX take place through a Plasma smart contract,
                     deployed on the Matic Blockchain.
