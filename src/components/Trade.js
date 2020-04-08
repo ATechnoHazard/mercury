@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Jumbotron, Container, Row, Col, Card, Form } from "react-bootstrap";
+import "../App.css";
 
 class Trade extends Component {
   render() {
@@ -11,6 +12,7 @@ class Trade extends Component {
               "url(" +
               "http://boxswap.io/static/media/leftBack.9b8a9502.svg" +
               ") left bottom no-repeat",
+            paddingTop: "100px",
           }}
         >
           <Jumbotron
@@ -28,6 +30,8 @@ class Trade extends Component {
               <p style={{ color: "#606789" }}>
                 Create an atomic trade on your terms
               </p>
+
+              <p></p>
             </Container>
           </Jumbotron>
         </div>
@@ -37,6 +41,8 @@ class Trade extends Component {
             backgroundColor: "#f6f8ff",
             paddingTop: "40px",
             paddingBottom: "40px",
+            marginTop: "-31px",
+            flexGrow: 1,
           }}
         >
           <Container>

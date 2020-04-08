@@ -1,18 +1,17 @@
-const Web3 = require("web3");
-const config = require("./config.js");
-
-var web3 = new Web3(config.provider);
+import { erc20, erc721, tokenid } from "./config.js";
+import web3 from "../web3";
 
 const wallet = web3.eth.accounts.wallet;
 
-wallet.add(config.privateKey1);
-wallet.add(config.privateKey2);
+import { abi } from "../../build/contracts/ChildERC20.json";
+import { abi as _abi } from "../../build/contracts/ChildERC721.json";
 
-const ChildERC20 = require("../../build/contracts/ChildERC20.json");
-const ChildERC721 = require("../../build/contracts/ChildERC721.json");
+const CHE = new web3.eth.Contract(abi, erc20);
+const NFT = new web3.eth.Contract(_abi, erc721);
 
-const CHE = new web3.eth.Contract(ChildERC20.abi, config.erc20);
-const NFT = new web3.eth.Contract(ChildERC721.abi, config.erc721);
+async function myBalance(address) {
+  return await CHE.methods.balanceOf(address).call();
+}
 
 async function displayBalance() {
   console.log("--- Acc1 balance ---");
@@ -45,19 +44,16 @@ async function displayBalance() {
     });
 
   console.log("\n");
-  console.log("--- NFT " + config.tokenid + " owner ---");
+  console.log("--- NFT " + tokenid + " owner ---");
   await NFT.methods
-    .ownerOf(config.tokenid)
+    .ownerOf(tokenid)
     .call()
     .then(
       (res) => {
-        if (res)
-          console.log("owner of token id " + config.tokenid + ":\t" + res);
+        if (res) console.log("owner of token id " + tokenid + ":\t" + res);
       },
       (err) => {
-        console.log(
-          err
-        );
+        console.log(err);
       }
     );
 }
