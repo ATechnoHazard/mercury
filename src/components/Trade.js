@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Jumbotron, Container, Row, Col, Card, Form } from "react-bootstrap";
+import {
+  Jumbotron,
+  Container,
+  Row,
+  Col,
+  Card,
+  Form,
+  Button,
+} from "react-bootstrap";
 import "../App.css";
 
 class Trade extends Component {
@@ -104,6 +112,20 @@ class Trade extends Component {
                     </Card.Body>
                   </Card>
                 </Col>
+              </Row>
+
+              <Row>
+                <Button
+                  style={{
+                    margin: "0 auto",
+                    marginTop: "20px",
+                    backgroundColor: "#8c3cf6",
+                    borderColor: "#8c3cf6",
+                  }}
+                  type="submit"
+                >
+                  Create & Sign order
+                </Button>
               </Row>
             </Form>
           </Container>
