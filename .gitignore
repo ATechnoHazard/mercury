@@ -29,3 +29,4 @@ contractAddresses
 package-lock.json
 .secret
 output
+src/chaincode/config.js

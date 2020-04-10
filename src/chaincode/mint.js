@@ -8,8 +8,8 @@ const wallet = web3.eth.accounts.wallet;
 wallet.add (config.privateKey1);
 wallet.add (config.privateKey2);
 
-const ChildERC20 = require ('../../build/contracts/ChildERC20.json');
-const ChildERC721 = require ('../../build/contracts/ChildERC721.json');
+const ChildERC20 = require ('../build/contracts/ChildERC20.json');
+const ChildERC721 = require ('../build/contracts/ChildERC721.json');
 
 const CHE = new web3.eth.Contract (ChildERC20.abi, config.erc20);
 const NFT = new web3.eth.Contract (ChildERC721.abi, config.erc721);

@@ -1,27 +1,51 @@
 import React, { Component } from "react";
 import { Jumbotron, Button, Container, Row, Col, Card } from "react-bootstrap";
+import web3 from "../web3";
+import Web3 from "web3";
 
 class Home extends Component {
+  state = {
+    balance: 0,
+  };
+
   scrollBtn = (event) => {
     event.preventDefault();
     window.scrollBy(0, window.screen.height);
   };
 
+  async componentDidMount() {
+    // if (window.ethereum) {
+    //   await window.ethereum.enable();
+    // }
+    // await window.ethereum.enable();
+    const account = await web3.eth.getAccounts();
+    const balance = await web3.eth.getBalance(account[0]);
+    this.setState({ balance: Web3.utils.fromWei(balance, "ether") });
+  }
+
   render() {
     return (
-      <div
-        style={{ paddingTop: "100px" }}
-      >
+      <div style={{ paddingTop: "100px" }}>
         <Jumbotron
           fluid
           style={{ backgroundColor: "#0a1647", height: window.screen.height }}
         >
           <Container>
-            <Row>
+            <Row className="my-auto" style={{ paddingTop: "100px" }}>
               <Col lg={true}>
-                <h1 style={{ color: "white", fontFamily: "Lato" }}>
+                <h1
+                  style={{
+                    color: "white",
+                    fontFamily: "Lato",
+                    fontSize: "54px",
+                    fontWeight: "bold",
+                  }}
+                >
                   Welcome to the Mercury DEX!
                 </h1>
+
+                <br></br>
+
                 <p style={{ color: "white", fontFamily: "Roboto" }}>
                   We allow trading of NFTs for TEST tokens using atomic
                   Plasma-backed swaps.
@@ -32,6 +56,13 @@ class Home extends Component {
                     Learn more
                   </Button>
                 </p>
+              </Col>
+              <Col lg={true}>
+                <img
+                  style={{ maxHeight: "450px", width: "100%" }}
+                  src="https://matic.network/_nuxt/bef152192b91389cba0a70f75cd1b71f.svg"
+                  alt=""
+                ></img>
               </Col>
             </Row>
           </Container>
@@ -64,19 +95,16 @@ class Home extends Component {
                       What are swaps?
                     </h2>
                   </Card.Title>
-                  <Card.Text style={{ fontFamily: "Roboto, sans-serif" }}>
-                    <p>
-                      Swaps are a financial instrument, which in the context of
-                      a decentralized exchange (DEX) mean a way to safely
-                      exchange Non-Fungible Tokens (NFTs) for regular tokens.
-                    </p>
-
-                    <p>
-                      This might be useful in a situation like say, a game in
-                      which NFTs represent items in the game, which can be
-                      purchased using the in-game currency, represented by
-                      regular tokens.
-                    </p>
+                  <Card.Text className="text-paragraph">
+                    Swaps are a financial instrument, which in the context of a
+                    decentralized exchange (DEX) mean a way to safely exchange
+                    Non-Fungible Tokens (NFTs) for regular tokens.
+                  </Card.Text>
+                  <Card.Text className="text-paragraph">
+                    This might be useful in a situation like say, a game in
+                    which NFTs represent items in the game, which can be
+                    purchased using the in-game currency, represented by regular
+                    tokens.
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -128,25 +156,22 @@ class Home extends Component {
                       How swaps work
                     </h2>
                   </Card.Title>
-                  <Card.Text style={{ fontFamily: "Roboto, sans-serif" }}>
-                    <p>
-                      Swaps on our DEX take place through a Plasma smart
-                      contract, deployed on the Matic Blockchain. The Plasma
-                      smart contract takes a signed order from an account, and
-                      upon matching of that order with the owner of the NFT, the
-                      tokens are atomically swapped for each other.
-                    </p>
-
-                    <p>
-                      Our swaps take place on the Matic network. This provides a
-                      solution for faster and extremely low-cost transactions
-                      with finality on the main chain. The system ensures
-                      liveliness using PoS checkpoints which are pushed to the
-                      Ethereum mainchain. This enables a single Matic sidechain
-                      to theoretically achieve 2<sup>16</sup> transactions per
-                      block, and possibly millions of transactions on multiple
-                      chains in the future.
-                    </p>
+                  <Card.Text className="text-paragraph">
+                    Swaps on our DEX take place through a Plasma smart contract,
+                    deployed on the Matic Blockchain. The Plasma smart contract
+                    takes a signed order from an account, and upon matching of
+                    that order with the owner of the NFT, the tokens are
+                    atomically swapped for each other.
+                  </Card.Text>
+                  <Card.Text className="text-paragraph">
+                    Our swaps take place on the Matic network. This provides a
+                    solution for faster and extremely low-cost transactions with
+                    finality on the main chain. The system ensures liveliness
+                    using PoS checkpoints which are pushed to the Ethereum
+                    mainchain. This enables a single Matic sidechain to
+                    theoretically achieve 2<sup>16</sup> transactions per block,
+                    and possibly millions of transactions on multiple chains in
+                    the future.
                   </Card.Text>
                 </Card.Body>
               </Card>
